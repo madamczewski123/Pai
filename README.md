@@ -1,3 +1,3 @@
 # Pai
 Pan Jakub to kozak
-M.A.
+Maks A tez kozak
