@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Rejestracyjno-Obliczeniowy "Odra"</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script type="text/javascript" src="skrypty.js"></script>
+</head>
+<body>
+    <div class="row">
+        <div class="col text-center"><h1>System Rejestracyjno-Obliczeniowy "Odra"</h1></div>
+    </div>
+    <div class="d-block container-fluid" id="Rejestracja">
+        <form class="border border-3 p-2 shadow-lg bg-body rounded" id="forma" >
+            <div class="row text-center">
+                <h3>Formularz rejestracyjny</h3>
+            </div>
+            <div class="container-fluid border border-3 p-2 mt-2 shadow bg-body rounded">
+                <div class="row text-center">
+                    <h4>Dane użytkownika</h4>
+                </div>
+                <div class="row">
+                    <div class="col-sm mt-2">
+                        <label for="Email" class="form-label">Adres email:</label>
+                        <input type="email" class="form-control" id="Email" placeholder="nazwa@email.com" required />
+                    </div>
+                    <div class="col-sm mt-2">
+                        <label for="Haslo" class="form-label">Hasło:</label>
+                        <input type="password" class="form-control" id="Haslo" placeholder="Od 5 do 14 znaków" minlength="5" maxlength="14" required />
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid border border-3 p-2 mt-2 shadow bg-body rounded">
+                <div class="row text-center">
+                    <h4>Dane postaci</h4>
+                </div>
+                <div class="row">
+                    <div class="form-floating col">
+                        <input type="text" class="form-control" id="NazwaPostaci" placeholder="Nazwa postaci" minlength="3" maxlength="20" required />
+                        <label for="NazwaPostaci"><p class="ms-2">Nazwa postaci:</p></label>
+                        <div class="form-text">Nazwa musi mieć od 3 do 20 liter</div>
+                    </div>
+                    <div class="col">
+                        <label>Klasa postaci:</label>
+                        <select class="form-select" id="Klasa">
+                            <option value="Łowca">Łowca</option>
+                            <option value="Mag">Mag</option>
+                            <option value="Paladyn">Paladyn</option>
+                            <option value="Tropiciel">Tropiciel</option>
+                            <option value="Wojownik">Wojownik</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-sm">
+                        <label for="Waga" class="form-label">Waga postaci:</label>
+                        <input type="number" class="form-control" id="Waga" placeholder="W kilogramach" min="40" max="150" required />
+                        <div class="form-text">Waga musi mieścić się w przedziale 40-150 kilogramów</div>
+                    </div>
+                    <div class="col-sm">
+                        <label for="Wzrost" class="form-label">Wzrost postaci:</label>
+                        <input type="number" class="form-control" id="Wzrost" placeholder="W centymetrach" min="140" max="250" required />
+                        <div class="form-text">Wzrost musi mieścić się w przedziale 140-250 centymetrów</div>
+                    </div>
+                    <div class="col-sm">
+                        <label for="Urodziny" class="form-label">Data urodzenia postaci:</label>
+                        <input type="date" class="form-control" id="Urodziny" min="1900-01-01" max="1999-12-31" required />
+                        <div class="form-text">Data urodzenia musi mieścić się w przedziale od 1900-01-01 do 1999-12-31</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-3 shadow bg-body rounded">
+                <button class="btn btn-primary" type="submit" onclick="maniek()">Zarejestruj postać</button>
+            </div>
+        </form>
+    </div>
+    <div class="d-none container-fluid" id="Prezentacja">
+        <div class="container-fluid p-2 border border-3 shadow-lg bg-body rounded">
+            <div class="row text-center">
+                <h3>Rejestracja przebiegła pomyślnie!<br> Dane wprowadzone do systemu:</h3>
+            </div>
+            <div class="container-fluid border border-3 p-2 mt-2 shadow bg-body rounded">
+                <div class="row text-center">
+                    <h4>Konto:</h4>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <p class="fs-4 fw-bold">Użykownik: </p> <p class="fs-4" id="2Email"></p>
+                    </div>
+                    <div class="col-sm">
+                        <p class="fs-4 fw-bold">Hasło: </p> <p class="fs-4" id="2Haslo"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid border border-3 p-2 mt-2 shadow bg-body rounded">
+                <div class="row text-center" id="DoWpisaniaPostaci">
+                    <h4>Postać:</h4> 
+                </div>
+                <div class="row fs-5 fw-bold">
+                    <div class="col" id="2Klasa">Klasa postaci: </div>
+                    <div class="col" id="Wiek">Wiek postaci: </div>
+                    <div class="col" id="DniDoUrodzin">Urodziny postaci: </div>
+                </div>
+                <div class="row fs-5 fw-bold">
+                    <div class="col" id="2Waga">Waga: </div>
+                    <div class="col" id="2Wzrost">Wzrost: </div>
+                    <div class="col" id="BMI">BMI: </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="skrypty.js"></script>
+</body>
+</html>
